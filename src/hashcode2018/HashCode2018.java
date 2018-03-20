@@ -17,8 +17,7 @@ import java.util.function.Supplier;
 
 /**
  * @author Alex
- *
- * To change the location of the input and output files, change the Files enum near the bottom of the file.
+ * @Team Myself, Charles Clarke, Andrew Dunnings, and Oliver Masters.
  */
 public class HashCode2018
 {

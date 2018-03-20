@@ -10,7 +10,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Supplier;
 
-public class Main
+/**
+ * @author Alex
+ * @Team Myself, Charles Clarke, Dan Fodor, and Oliver Masters.
+ */
+public class HashCode2017
 {
 	/* Possible filenames are 'small', 'med1', 'med2', and 'big'. */
 	private static final String	INPUT_FILENAME	= "input/hashcode2017/big.in";

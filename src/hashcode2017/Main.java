@@ -1,4 +1,5 @@
 package hashcode2017;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,8 +13,8 @@ import java.util.function.Supplier;
 public class Main
 {
 	/* Possible filenames are 'small', 'med1', 'med2', and 'big'. */
-	private static final String	INPUT_FILENAME	= "input/big";
-	private static final String	OUTPUT_FILENAME	= "output/big";
+	private static final String	INPUT_FILENAME	= "input/hashcode2017/big.in";
+	private static final String	OUTPUT_FILENAME	= "output/hashcode2017/big.out";
 
 	static int		V, E, R, C, X;	/* Number of Videos, Endpoints, Requests, Cache Servers, and Capacity of Cache Servers. */
 	static int[]	vidSizes;		/* Size of each video (in MB). */
@@ -66,7 +67,8 @@ public class Main
 
 			for ( int i = 0; i < E; ++i ) /* For each endpoint... */
 			{
-				intArray = nextLineAsIntArray.get(); /* Find out the latency to the MainFrame and how many connections to Cache servers there are. */
+				intArray = nextLineAsIntArray
+						.get(); /* Find out the latency to the MainFrame and how many connections to Cache servers there are. */
 
 				latencies[ C ][ i ] = intArray[ 0 ]; /* Latency of endpoint to MainFrame. */
 				numConnections = intArray[ 1 ]; /* How many Cache servers there are connected to the endpoint. */
@@ -130,7 +132,8 @@ public class Main
 			{
 				for ( int k = 0; k < E; k++ )
 				{
-					currentQuickestLatencies[ k ][ videosToStoreInCache[ i ].get( j ) ] = Math.min( currentQuickestLatencies[ k ][ videosToStoreInCache[ i ].get( j ) ], latencies[ i ][ k ] );
+					currentQuickestLatencies[ k ][ videosToStoreInCache[ i ].get( j ) ] = Math
+							.min( currentQuickestLatencies[ k ][ videosToStoreInCache[ i ].get( j ) ], latencies[ i ][ k ] );
 				}
 			}
 
@@ -152,7 +155,8 @@ public class Main
 			for ( int k = 0; k < E; k++ ) /* For each endpoint... */
 			{
 				/* Add to the value of video j a score -- the difference between the fastest latency and the MainFrame, multipled by the number of requests. */
-				kValues[ j ] += ( quickLatencies[ k ][ j ] - Math.min( latencies[ cacheNumber ][ k ], quickLatencies[ k ][ j ] ) ) * requests[ k ][ j ];
+				kValues[ j ] += ( quickLatencies[ k ][ j ] - Math.min( latencies[ cacheNumber ][ k ], quickLatencies[ k ][ j ] ) )
+						* requests[ k ][ j ];
 			}
 		}
 	}

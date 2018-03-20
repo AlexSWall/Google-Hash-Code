@@ -2,10 +2,11 @@ package hashcode2018;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -16,13 +17,15 @@ import java.util.function.Supplier;
 
 /**
  * @author Alex
+ *
+ * To change the location of the input and output files, change the Files enum near the bottom of the file.
  */
 public class HashCode2018
 {
 	// === Hyperparameters ===
 
 	/* File to deal with —— { A = a_example, B = b_should_be_easy, C = c_no_hurry, D = d_metropolis, E = e_high_bonus }. */
-	private static final Files file = Files.D;
+	private static final Files file = Files.A;
 
 	/* The power of the numerator in the score function. */
 	private static final int POW = 1;
@@ -177,7 +180,7 @@ public class HashCode2018
 	{
 		int[] inputIntArray; /* Used to get and assign input. */
 
-		try ( BufferedReader br = new BufferedReader( new FileReader( new File( file.toInput() ) ) ) )
+		try ( BufferedReader br = new BufferedReader( new FileReader( file.getInputPath().toFile() ) ) )
 		{
 			/* Create lambda function to get input line as array of ints. */
 			Supplier<int[]> nextLineAsIntArray = () -> {
@@ -228,14 +231,14 @@ public class HashCode2018
 		catch ( IOException e )
 		{
 			e.printStackTrace();
-			return;
+			System.exit( 1 );
 		}
 	}
 
 	/** Output solution to file with filename given. */
 	private static void output ( Files file, List<List<Integer>> solution )
 	{
-		try ( BufferedWriter bw = new BufferedWriter( new FileWriter( file.toOutput() ) ) )
+		try ( BufferedWriter bw = new BufferedWriter( new FileWriter( file.getOutputPath().toFile() ) ) )
 		{
 			for ( List<Integer> vehicleInfo : solution )
 			{
@@ -255,6 +258,7 @@ public class HashCode2018
 		catch ( IOException e )
 		{
 			e.printStackTrace();
+			System.exit( 1 );
 		}
 	}
 
@@ -273,14 +277,14 @@ public class HashCode2018
 			this.str = str;
 		}
 
-		String toInput ()
+		Path getInputPath ()
 		{
-			return "input/" + str + ".in";
+			return Paths.get( "input", "hashcode2018", str + ".in" );
 		}
 
-		String toOutput ()
+		Path getOutputPath ()
 		{
-			return "output/" + str + ".out";
+			return Paths.get( "output", "hashcode2018", str + ".output" );
 		}
 	}
 
